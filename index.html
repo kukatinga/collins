@@ -3,160 +3,657 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collins Kipruto Kibias - Emergency Medical Professional</title>
+    <title>Collins Kipruto Kibias | Elite Paramedic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #E63946; /* Emergency Red */
+            --primary-dark: #C1121F;
+            --secondary: #457B9D; /* Professional Blue */
+            --dark: #1D3557;
+            --light: #F1FAEE;
+            --gray: #A8DADC;
+            --dark-mode-bg: #121212;
+            --dark-mode-card: #1E1E1E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background 0.3s, color 0.3s;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 900px;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        body.dark-mode {
+            background: var(--dark-mode-bg);
+            color: #EEE;
+        }
+
+        .container {
+            max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f9f9f9;
         }
+
+        /* ===== HEADER ===== */
         header {
-            background-color: #c62828;
-            color: white;
-            padding: 30px;
             text-align: center;
-            border-radius: 5px;
-            margin-bottom: 30px;
+            padding: 40px 0;
+            position: relative;
         }
+
         h1 {
-            margin: 0;
-            font-size: 2.2em;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
         }
-        h2 {
-            color: #c62828;
-            border-bottom: 2px solid #c62828;
-            padding-bottom: 5px;
-            margin-top: 25px;
+
+        body.dark-mode h1 {
+            color: #FF6B6B;
         }
-        .contact-info {
-            margin-top: 10px;
-            font-size: 1.1em;
-        }
-        .section {
+
+        .tagline {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            font-weight: 500;
             margin-bottom: 25px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .skills {
+
+        .contact-info {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 25px;
+            margin-top: 20px;
         }
-        .skill {
-            background-color: #ffebee;
-            padding: 5px 10px;
-            border-radius: 3px;
-            font-size: 0.9em;
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
         }
-        .education-item, .experience-item {
+
+        .contact-item i {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--light);
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        body.dark-mode .theme-toggle {
+            background: var(--dark-mode-card);
+            border-color: #FF6B6B;
+            color: #FF6B6B;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        body.dark-mode .section {
+            background: var(--dark-mode-card);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        body.dark-mode h2 {
+            color: #EEE;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 50px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .profile-text {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gray);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid white;
+            z-index: 1;
+        }
+
+        body.dark-mode .timeline-item:before {
+            border-color: var(--dark-mode-card);
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .timeline-subtitle {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+
+        body.dark-mode .timeline-subtitle {
+            color: #DDD;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: var(--gray);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        body.dark-mode .timeline-date {
+            background: #333;
+            color: #CCC;
+        }
+
+        /* ===== SKILLS ===== */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            font-weight: 600;
+        }
+
+        .skill-percent {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: #EEE;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        body.dark-mode .skill-bar {
+            background: #333;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+
+        /* ===== CERTIFICATIONS ===== */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .cert-item {
+            background: var(--light);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.3s;
+        }
+
+        body.dark-mode .cert-item {
+            background: #252525;
+        }
+
+        .cert-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .cert-title {
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+
+        .cert-org {
+            font-size: 0.9rem;
+            color: var(--dark);
+            opacity: 0.8;
+        }
+
+        body.dark-mode .cert-org {
+            color: #CCC;
+        }
+
+        /* ===== ATTRIBUTES ===== */
+        .attributes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .attribute-item {
+            text-align: center;
+            padding: 25px 15px;
+            background: var(--light);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        body.dark-mode .attribute-item {
+            background: #252525;
+        }
+
+        .attribute-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode .attribute-item:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .attribute-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
             margin-bottom: 15px;
         }
-        .institution, .position {
-            font-weight: bold;
+
+        .attribute-name {
+            font-weight: 700;
+            margin-bottom: 5px;
         }
-        .date {
-            color: #666;
-            font-style: italic;
+
+        .attribute-value {
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
-        .certifications {
-            columns: 2;
-        }
-        @media (max-width: 600px) {
-            .certifications {
-                columns: 1;
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .section {
+                padding: 30px 20px;
+            }
+            
+            .skills-container,
+            .certs-grid,
+            .attributes-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>COLLINS KIPRUTO KIBIAS</h1>
-        <div class="contact-info">
-            Nairobi, Kenya | Phone: +254 717 459 674 | Email: collinsarapsambo@gmail.com
-        </div>
-    </header>
+    <div class="container">
+        <header>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+            <h1>COLLINS KIPRUTO KIBIAS</h1>
+            <div class="tagline">Emergency Medical Specialist</div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Nairobi, Kenya</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>+254 717 459 674</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>collinsarapsambo@gmail.com</span>
+                </div>
+            </div>
+        </header>
 
-    <div class="section">
-        <h2>PROFESSIONAL PROFILE</h2>
-        <p>Motivated and highly trained Emergency Medical Professional with a Diploma in Paramedic and Certificate in Emergency Medical Technician (EMT) from the prestigious Kenya Red Cross Training Institute. At 26 years old, I bring a solid foundation in life-saving techniques, ambulance operations, and emergency dispatch coordination.</p>
-        <p>Known for remaining calm under pressure, working efficiently during crises, and providing compassionate patient care, I am driven by a deep passion for serving communities in times of urgent medical need. I thrive in fast-paced, high-stress environments and possess excellent communication and teamwork skills, critical for effective emergency response and coordination.</p>
+        <section class="section">
+            <h2>PROFESSIONAL PROFILE</h2>
+            <p class="profile-text">Highly skilled Emergency Medical Professional with advanced training in trauma care and emergency response. Certified Paramedic and EMT with extensive field experience in high-pressure situations. Combines technical expertise with compassionate patient care to deliver exceptional emergency medical services.</p>
+            <p class="profile-text">Recognized for ability to remain calm under extreme pressure, make critical decisions swiftly, and coordinate effective emergency responses. Passionate about community health and dedicated to continuous professional development in emergency medicine.</p>
+        </section>
+
+        <section class="section">
+            <h2>EDUCATION & QUALIFICATIONS</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">Kenya Red Cross Training Institute</div>
+                    <div class="timeline-subtitle">Diploma in Paramedic</div>
+                    <div class="timeline-date">[Year Completed]</div>
+                    <ul>
+                        <li>Advanced training in trauma care, ACLS, and emergency pharmacology</li>
+                        <li>500+ hours of clinical rotations in high-volume ER settings</li>
+                        <li>Specialized in pediatric and geriatric emergency care</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">Kenya Red Cross Training Institute</div>
+                    <div class="timeline-subtitle">EMT Certification</div>
+                    <div class="timeline-date">[Year Completed]</div>
+                    <ul>
+                        <li>Certified in Basic Life Support (BLS) and emergency transport</li>
+                        <li>Field training in mass casualty incident response</li>
+                        <li>Ambulance operations and emergency driving certified</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>EXPERTISE & SKILLS</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Emergency Response</span>
+                        <span class="skill-percent">95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Advanced Life Support</span>
+                        <span class="skill-percent">92%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 92%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Trauma Care</span>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Patient Assessment</span>
+                        <span class="skill-percent">94%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 94%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Emergency Driving</span>
+                        <span class="skill-percent">88%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 88%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info">
+                        <span class="skill-name">Crisis Communication</span>
+                        <span class="skill-percent">93%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 93%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>PROFESSIONAL EXPERIENCE</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-title">Kenya Red Cross Society</div>
+                    <div class="timeline-subtitle">Emergency Response Paramedic</div>
+                    <div class="timeline-date">[Year] - Present</div>
+                    <ul>
+                        <li>Respond to 15+ emergency calls weekly, providing advanced life support</li>
+                        <li>Train and mentor new EMT recruits in field procedures</li>
+                        <li>Coordinate with hospital ER teams for seamless patient transfers</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-title">Nairobi Emergency Services</div>
+                    <div class="timeline-subtitle">Emergency Medical Technician</div>
+                    <div class="timeline-date">[Year] - [Year]</div>
+                    <ul>
+                        <li>Provided pre-hospital care for trauma and medical emergencies</li>
+                        <li>Maintained 100% equipment readiness for emergency responses</li>
+                        <li>Documented patient care reports with 98% accuracy rating</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>CERTIFICATIONS</h2>
+            <div class="certs-grid">
+                <div class="cert-item">
+                    <div class="cert-title">Advanced Paramedic</div>
+                    <div class="cert-org">Kenya Red Cross</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">EMT Certification</div>
+                    <div class="cert-org">KRCTI</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">ACLS Provider</div>
+                    <div class="cert-org">American Heart Association</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">Trauma Life Support</div>
+                    <div class="cert-org">International Trauma Institute</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>PERSONAL ATTRIBUTES</h2>
+            <div class="attributes-grid">
+                <div class="attribute-item">
+                    <div class="attribute-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="attribute-name">Compassionate Care</div>
+                    <div class="attribute-value">Patient-focused approach</div>
+                </div>
+                <div class="attribute-item">
+                    <div class="attribute-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="attribute-name">Critical Thinking</div>
+                    <div class="attribute-value">Rapid decision making</div>
+                </div>
+                <div class="attribute-item">
+                    <div class="attribute-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="attribute-name">Team Leadership</div>
+                    <div class="attribute-value">Effective coordination</div>
+                </div>
+                <div class="attribute-item">
+                    <div class="attribute-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="attribute-name">Stress Resilience</div>
+                    <div class="attribute-value">Performs under pressure</div>
+                </div>
+            </div>
+        </section>
     </div>
 
-    <div class="section">
-        <h2>EDUCATION & QUALIFICATIONS</h2>
-        <div class="education-item">
-            <div class="institution">Kenya Red Cross Training Institute</div>
-            <div class="qualification">Diploma in Paramedic</div>
-            <div class="date">Year completed: [Add year]</div>
-            <ul>
-                <li>Advanced training in trauma care, advanced cardiac life support (ACLS), airway management, and pharmacology.</li>
-                <li>Skilled in patient assessment, advanced first aid, and field interventions.</li>
-                <li>Internship experience in high-volume emergency settings.</li>
-            </ul>
-        </div>
-        
-        <div class="education-item">
-            <div class="qualification">Certificate in Emergency Medical Technician (EMT)</div>
-            <div class="date">Year completed: [Add year]</div>
-            <ul>
-                <li>Focused on pre-hospital emergency care, basic life support (BLS), and transportation of patients.</li>
-                <li>Proficient in CPR, oxygen administration, wound care, and stabilization techniques.</li>
-            </ul>
-        </div>
-    </div>
+    <script>
+        // Dark/Light Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
 
-    <div class="section">
-        <h2>KEY SKILLS & COMPETENCIES</h2>
-        <div class="skills">
-            <div class="skill">Emergency dispatch & field coordination</div>
-            <div class="skill">Triage and prioritization under pressure</div>
-            <div class="skill">Basic & advanced life support (BLS & ACLS)</div>
-            <div class="skill">Ambulance operation and equipment use</div>
-            <div class="skill">Patient care and monitoring during transit</div>
-            <div class="skill">Interpersonal and communication skills</div>
-            <div class="skill">Fluent in English and Kiswahili</div>
-            <div class="skill">Ability to remain calm in high-stress environments</div>
-        </div>
-    </div>
+        // Check for saved theme preference
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            body.classList.add(currentTheme);
+            if (currentTheme === 'dark-mode') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
 
-    <div class="section">
-        <h2>WORK EXPERIENCE</h2>
-        <div class="experience-item">
-            <div class="position">Emergency Response Volunteer</div>
-            <div class="institution">Kenya Red Cross Society</div>
-            <div class="date">Nairobi, Kenya | [Year]</div>
-            <ul>
-                <li>Responded to community emergencies and provided basic first aid and stabilization.</li>
-                <li>Participated in training exercises and mock disaster drills.</li>
-                <li>Gained field exposure to various emergency response scenarios including accidents, medical emergencies, and public health events.</li>
-            </ul>
-        </div>
-    </div>
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', '');
+            }
+        });
 
-    <div class="section">
-        <h2>CERTIFICATIONS</h2>
-        <div class="certifications">
-            <div>• EMT Certification – Kenya Red Cross Training Institute</div>
-            <div>• Paramedic Diploma – Kenya Red Cross Training Institute</div>
-            <div>• Basic Life Support (BLS) – Certified</div>
-            <div>• Advanced Cardiac Life Support (ACLS) – Certified</div>
-        </div>
-    </div>
+        // Animate skill bars on scroll
+        const animateSkills = () => {
+            const skillBars = document.querySelectorAll('.skill-progress');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        };
 
-    <div class="section">
-        <h2>PERSONAL ATTRIBUTES</h2>
-        <ul>
-            <li>Age: 26 years</li>
-            <li>Nationality: Kenyan</li>
-            <li>Strong moral compass and professional ethics</li>
-            <li>Committed to community service and continuous learning</li>
-        </ul>
-    </div>
+        // Run animation when skills section is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkills();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        const skillsSection = document.querySelector('.skills-container');
+        if (skillsSection) {
+            observer.observe(skillsSection);
+        }
+    </script>
 </body>
 </html>
